@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Artiverse — Emerging Art. Visibility Without Barriers.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon-mint:  #00FFD1;
+    --neon-sky:   #00C8FF;
+    --neon-lilla: #C87FFF;
+    --neon-mauve: #FF6EC7;
+    --bg:    #141414;
+    --surf:  #1E1E1E;
+    --surf2: #272727;
+    --paper: #F0EDE8;
+    --paper2:#E8E4DC;
+    --rule-d: rgba(255,255,255,0.07);
+    --rule-l: rgba(0,0,0,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Mono', monospace;
+    background: var(--bg);
+    overflow-x: hidden;
+  }
+  body.light { background: var(--paper); }
+
+  .doc {
+    --fg:      #f0ede8;
+    --fg-soft: rgba(240,237,232,0.62);
+    --fg-muted:rgba(240,237,232,0.30);
+    --accent:  var(--neon-mint);
+    --card:    var(--surf);
+    --rule:    var(--rule-d);
+  }
+  body.light .doc {
+    --fg:      #0e0e0e;
+    --fg-soft: rgba(14,14,14,0.60);
+    --fg-muted:rgba(14,14,14,0.32);
+    --accent:  #0a6e5e;
+    --card:    var(--paper2);
+    --rule:    var(--rule-l);
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 56px;
+    background: rgba(20,20,20,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule-d);
+    transition: background 0.3s;
+  }
+  body.light nav {
+    background: rgba(240,237,232,0.88);
+    border-bottom-color: var(--rule-l);
+  }
+  .nav-logo {
+    font-family: 'Anton', sans-serif; font-size: 18px; letter-spacing: .04em;
+    background: linear-gradient(135deg, var(--neon-mint), var(--neon-sky), var(--neon-lilla), var(--neon-mauve));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    text-decoration: none;
+  }
+  body.light .nav-logo {
+    background: linear-gradient(135deg,#0a6e5e,#1a4a8a,#5a2a8a,#8a1a54);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 32px; list-style: none;
+  }
+  .nav-links a {
+    font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+    color: rgba(240,237,232,0.5); text-decoration: none;
+    transition: color .2s;
+  }
+  body.light .nav-links a { color: rgba(14,14,14,0.45); }
+  .nav-links a:hover { color: var(--neon-mint); }
+  body.light .nav-links a:hover { color: #0a6e5e; }
+  .nav-links .nav-cta {
+    color: var(--neon-mint); border: 1px solid rgba(0,255,209,0.4);
+    padding: 6px 16px;
+  }
+  body.light .nav-links .nav-cta { color: #0a6e5e; border-color: rgba(10,110,94,0.4); }
+  .nav-links .nav-cta:hover { background: var(--neon-mint); color: #0e0e0e; }
+  body.light .nav-links .nav-cta:hover { background: #0a6e5e; color: #fff; }
+  .nav-right { display: flex; align-items: center; gap: 24px; }
+  .theme-btn {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 1px solid var(--rule-d); background: var(--surf);
+    cursor: pointer; font-size: 14px; color: #f0ede8;
+    display: flex; align-items: center; justify-content: center;
+  }
+  @media(max-width:680px){
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+  }
+
+  .page { max-width: 860px; margin: 0 auto; padding: 0 48px 120px; }
+  @media(max-width:640px){ .page{ padding: 0 24px 80px; } }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: flex-end; padding-bottom: 80px; padding-top: 56px;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0; pointer-events: none; opacity: .35;
+    background-image:
+      linear-gradient(var(--rule-d) 1px,transparent 1px),
+      linear-gradient(90deg,var(--rule-d) 1px,transparent 1px);
+    background-size: 52px 52px;
+  }
+  .hero-eyebrow {
+    font-size: 10px; letter-spacing: .25em; text-transform: uppercase;
+    color: var(--fg-muted); margin-bottom: 28px;
+  }
+  .hero-title {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(64px, 15vw, 130px);
+    line-height: .91; letter-spacing: .01em; color: var(--fg);
+    margin-bottom: 32px;
+  }
+  .hero-title .grad {
+    display: block;
+    background: linear-gradient(135deg, var(--neon-mint), var(--neon-sky), var(--neon-lilla), var(--neon-mauve));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  body.light .hero-title .grad {
+    background: linear-gradient(135deg,#0a6e5e,#1a4a8a,#5a2a8a,#8a1a54);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .hero-sub { font-size: 13px; line-height: 1.9; color: var(--fg-soft); max-width: 420px; margin-bottom: 40px; }
+  .hero-cta {
+    display: inline-block;
+    font-family: 'Anton', sans-serif; font-size: 15px; letter-spacing: .08em;
+    padding: 14px 36px; background: var(--neon-mint); color: #0e0e0e;
+    text-decoration: none; transition: opacity .2s; margin-right: 12px;
+  }
+  .hero-cta:hover { opacity: .85; }
+  .hero-cta-sec {
+    display: inline-block;
+    font-family: 'Anton', sans-serif; font-size: 15px; letter-spacing: .08em;
+    padding: 14px 36px; border: 1.5px solid rgba(240,237,232,0.2); color: var(--fg);
+    text-decoration: none; transition: border-color .2s;
+  }
+  .hero-cta-sec:hover { border-color: var(--fg); }
+  body.light .hero-cta { background: #0a6e5e; color: #fff; }
+  body.light .hero-cta-sec { border-color: rgba(14,14,14,0.2); color: var(--fg); }
+  .hero-meta {
+    margin-top: 52px; display: flex; gap: 32px; flex-wrap: wrap;
+    font-size: 10px; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--fg-muted); border-top: 1px solid var(--rule); padding-top: 20px;
+  }
+
+  /* SECTIONS */
+  .sec { padding: 80px 0; border-top: 1px solid var(--rule); }
+  .sec-hd { display: grid; grid-template-columns: 96px 1fr; gap: 24px; margin-bottom: 44px; align-items: start; }
+  @media(max-width:520px){ .sec-hd{ grid-template-columns:1fr; } }
+  .sec-num { font-family:'Anton',sans-serif; font-size:56px; line-height:1; color:rgba(255,255,255,.04); user-select:none; }
+  body.light .sec-num { color:rgba(0,0,0,.05); }
+  .sec-label { font-size:9px; letter-spacing:.25em; text-transform:uppercase; color:var(--accent); margin-bottom:5px; display:block; }
+  .sec-title { font-family:'Anton',sans-serif; font-size:clamp(30px,5vw,50px); line-height:1; letter-spacing:.02em; color:var(--fg); }
+  .sec-title .hi { color:var(--accent); }
+
+  p.b { font-size:13px; line-height:1.9; color:var(--fg-soft); margin-bottom:16px; max-width:580px; }
+  p.b strong { color:var(--fg); font-weight:400; }
+
+  .pull { border-left:2px solid var(--accent); padding:16px 24px; margin:28px 0; background:var(--card); }
+  .pull p { font-size:15px; line-height:1.7; color:var(--fg); font-style:italic; font-weight:300; }
+
+  /* OFFER GRID */
+  .offer-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--rule); border:1px solid var(--rule); margin:32px 0; }
+  @media(max-width:480px){ .offer-grid{ grid-template-columns:1fr; } }
+  .offer-card { background:var(--card); padding:26px; transition:background .2s; }
+  .offer-card:hover { background:var(--surf2); }
+  .offer-bar { height:2px; margin-bottom:14px; }
+  .offer-name { font-family:'Anton',sans-serif; font-size:18px; letter-spacing:.03em; color:var(--fg); margin-bottom:8px; }
+  .offer-desc { font-size:12px; line-height:1.8; color:var(--fg-soft); }
+
+  /* HOW IT WORKS */
+  .steps { display:flex; flex-direction:column; gap:1px; background:var(--rule); border:1px solid var(--rule); margin:32px 0; }
+  .step { background:var(--card); padding:22px 28px; display:grid; grid-template-columns:52px 1fr; gap:20px; align-items:start; }
+  .step-n { font-family:'Anton',sans-serif; font-size:34px; line-height:1; color:var(--accent); opacity:.55; }
+  .step-title { font-family:'Anton',sans-serif; font-size:17px; letter-spacing:.03em; color:var(--fg); margin-bottom:6px; }
+  .step-body { font-size:12px; line-height:1.8; color:var(--fg-soft); }
+  .step-body strong { color:var(--fg); font-weight:400; }
+
+  /* APPLY */
+  .cta-block {
+    border:1.5px solid var(--accent); padding:40px; margin:40px 0;
+    display:flex; flex-direction:column; gap:16px;
+  }
+  .cta-title { font-family:'Anton',sans-serif; font-size:clamp(28px,5vw,48px); letter-spacing:.02em; line-height:1; color:var(--fg); }
+  .cta-sub { font-size:13px; line-height:1.8; color:var(--fg-soft); max-width:460px; }
+  .cta-btns { display:flex; gap:12px; flex-wrap:wrap; margin-top:8px; }
+  .btn-primary {
+    font-family:'Anton',sans-serif; font-size:14px; letter-spacing:.08em;
+    padding:13px 30px; background:var(--accent); color:#0e0e0e;
+    border:none; cursor:pointer; text-decoration:none; display:inline-block;
+    transition:opacity .2s;
+  }
+  .btn-primary:hover { opacity:.85; }
+  .btn-sec {
+    font-family:'Anton',sans-serif; font-size:14px; letter-spacing:.08em;
+    padding:13px 30px; background:none; color:var(--fg);
+    border:1px solid var(--rule); cursor:pointer; text-decoration:none; display:inline-block;
+    transition:border-color .2s;
+  }
+  .btn-sec:hover { border-color:var(--fg); }
+  body.light .btn-primary { background: #0a6e5e; color: #fff; }
+
+  /* CONTACT */
+  .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--rule); border:1px solid var(--rule); margin:32px 0; }
+  @media(max-width:480px){ .contact-grid{ grid-template-columns:1fr; } }
+  .contact-card { background:var(--card); padding:26px; }
+  .contact-label { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; display:block; }
+  .contact-val { font-size:13px; color:var(--fg); text-decoration:none; display:block; }
+  .contact-val:hover { color:var(--accent); }
+  .contact-note { font-size:11px; color:var(--fg-muted); margin-top:6px; line-height:1.6; }
+
+  /* FOOTER */
+  .footer { border-top:1px solid var(--rule); padding-top:40px; margin-top:40px; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; }
+  .footer-logo { font-family:'Anton',sans-serif; font-size:36px; letter-spacing:.02em; line-height:1; }
+  .footer-logo span {
+    background:linear-gradient(135deg,var(--neon-mint),var(--neon-sky),var(--neon-lilla),var(--neon-mauve));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  }
+  body.light .footer-logo span {
+    background:linear-gradient(135deg,#0a6e5e,#1a4a8a,#5a2a8a,#8a1a54);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  }
+  .footer-meta { font-size:10px; color:var(--fg-muted); letter-spacing:.1em; text-transform:uppercase; text-align:right; line-height:2; }
+  .footer-nav { display:flex; gap:24px; flex-wrap:wrap; }
+  .footer-nav a { font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--fg-muted); text-decoration:none; transition:color .2s; }
+  .footer-nav a:hover { color:var(--accent); }
+
+  .reveal { opacity:0; transform:translateY(12px); transition:opacity .5s ease,transform .5s ease; }
+  .reveal.on { opacity:1; transform:none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">THE ARTIVERSE</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#offer">What we offer</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="kit.html">Artist kit</a></li>
+    <li><a href="#apply" class="nav-cta">Apply</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" onclick="document.body.classList.toggle('light')">◐</button>
+  </div>
+</nav>
+
+<div class="doc">
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <p class="hero-eyebrow">The Artiverse — emerging art hub</p>
+    <h1 class="hero-title">
+      YOUR<br>
+      <span class="grad">SPACE<br>IS HERE</span>
+    </h1>
+    <p class="hero-sub">A curated space for emerging artists. Visibility, storytelling, and a real community — at no cost. Ever.</p>
+    <div>
+      <a href="#apply" class="hero-cta">APPLY NOW</a>
+      <a href="#about" class="hero-cta-sec">LEARN MORE</a>
+    </div>
+    <div class="hero-meta">
+      <span>Free — always</span>
+      <span>Curated — not an aggregator</span>
+      <span>For artists who are growing</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="sec reveal" id="about">
+    <div class="sec-hd">
+      <span class="sec-num">01</span>
+      <div>
+        <span class="sec-label">About</span>
+        <h2 class="sec-title">The <span class="hi">Artiverse</span></h2>
+      </div>
+    </div>
+
+    <p class="b">The Artiverse is a hub for emerging artists. Not a gallery that charges you to exhibit. Not a platform that aggregates thousands of profiles without distinction. <strong>A project founded by an artist, for artists</strong> — born out of two years of paid open calls, inaccessible exhibitions, and a system that too often puts wallets before talent.</p>
+
+    <p class="b">Our premise is simple: <strong>if your work is interesting, you deserve to be seen. Full stop.</strong> Not after paying a submission fee. Not after proving you already have 10,000 followers. Now.</p>
+
+    <div class="pull">
+      <p>"99% of open calls share one thing in common: you pay to be seen. We exist to change that."</p>
+    </div>
+
+    <p class="b">We are a digital hub with a strong editorial identity — every artist we present is told with care, not just published. Over time we will also become physical, with exhibitions and events. But the direction is always the same: <strong>the artist at the centre.</strong></p>
+  </section>
+
+  <!-- WHAT WE OFFER -->
+  <section class="sec reveal" id="offer">
+    <div class="sec-hd">
+      <span class="sec-num">02</span>
+      <div>
+        <span class="sec-label">What we offer</span>
+        <h2 class="sec-title">What you get<br><span class="hi">with us</span></h2>
+      </div>
+    </div>
+
+    <p class="b">We don't promise the moon. We promise what we can deliver — and we deliver it. Here's what goes into your profile on The Artiverse.</p>
+
+    <div class="offer-grid">
+      <div class="offer-card">
+        <div class="offer-bar" style="background:var(--neon-mint);"></div>
+        <p class="offer-name">Curated profile</p>
+        <p class="offer-desc">A page dedicated to your work — not a template identical for everyone. A text written by us that tells who you are, what you do and why you're worth following.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-bar" style="background:var(--neon-sky);"></div>
+        <p class="offer-name">Instagram visibility</p>
+        <p class="offer-desc">Dedicated posts on the @the_artiverse feed — with carefully written captions that add context and point of view. Not a simple repost: a presentation.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-bar" style="background:var(--neon-lilla);"></div>
+        <p class="offer-name">Authentic storytelling</p>
+        <p class="offer-desc">We ask you to share your process, not just the result. We also present work in progress, ongoing series, research. Living art, not only finished art.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-bar" style="background:var(--neon-mauve);"></div>
+        <p class="offer-name">A real community</p>
+        <p class="offer-desc">You join a network of selected artists — not a database, a community. Mutual support, cross-visibility, and a place where you're not alone.</p>
+      </div>
+    </div>
+
+    <p class="b" style="margin-top:8px;">And: <strong>no exclusivity</strong>. You can keep submitting to other platforms, participating in other exhibitions, doing whatever you want. The Artiverse doesn't ask for loyalty — it offers space.</p>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="sec reveal" id="how">
+    <div class="sec-hd">
+      <span class="sec-num">03</span>
+      <div>
+        <span class="sec-label">The process</span>
+        <h2 class="sec-title">How it<br><span class="hi">works</span></h2>
+      </div>
+    </div>
+
+    <p class="b">No bureaucracy, no endless forms. The process is simple and transparent — you always know where you stand.</p>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-n">1</span>
+        <div>
+          <p class="step-title">You apply</p>
+          <p class="step-body">Fill in the application form (link below). We ask: who you are, a link to your work, 3–5 pieces that represent you, and a couple of lines on what you're looking for. <strong>Not a CV, not a formal letter.</strong> Be yourself.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-n">2</span>
+        <div>
+          <p class="step-title">We review</p>
+          <p class="step-body">We look at your work carefully. No infinite waiting lists or editorial committees. <strong>We respond within 2 weeks</strong>, always — even if the answer is no. If it's no, we tell you why.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-n">3</span>
+        <div>
+          <p class="step-title">We get to know you</p>
+          <p class="step-body">If you're selected, we connect — DM or a short call — to better understand your work and what you want to tell. <strong>We don't put you in a database: we build a story together.</strong></p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-n">4</span>
+        <div>
+          <p class="step-title">You go live</p>
+          <p class="step-body">We publish your profile and your first post on the channel. We share the link with you — you can spread it however you like. <strong>You are the protagonist, we are the stage.</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLY -->
+  <section class="sec reveal" id="apply">
+    <div class="cta-block">
+      <p class="cta-title">READY TO<br><span style="color:var(--accent);">APPLY?</span></p>
+      <p class="cta-sub">Fill in the form — it takes less than 10 minutes. We respond within 2 weeks. No cost, no surprises.</p>
+      <div class="cta-btns">
+        <a href="https://instagram.com/the_artiverse" class="btn-primary">APPLY NOW</a>
+        <a href="kit.html" class="btn-sec">READ THE ARTIST KIT</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="sec reveal" id="contact">
+    <div class="sec-hd">
+      <span class="sec-num">04</span>
+      <div>
+        <span class="sec-label">Contact</span>
+        <h2 class="sec-title">Get in<br><span class="hi">touch</span></h2>
+      </div>
+    </div>
+
+    <p class="b">Have a question before applying? Want to collaborate? Just want to say hi? We're reachable.</p>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <span class="contact-label">Email</span>
+        <a href="mailto:thenewartiverse@gmail.com" class="contact-val">thenewartiverse@gmail.com</a>
+        <p class="contact-note">For applications, collaborations, and general inquiries.</p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-label">Instagram</span>
+        <a href="https://instagram.com/the_artiverse" class="contact-val" target="_blank">@the_artiverse</a>
+        <p class="contact-note">DMs are open. This is where most of the conversation happens.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>
+      <div class="footer-logo">THE <span>ARTIV<br>ERSE</span></div>
+      <nav class="footer-nav" style="margin-top:16px;">
+        <a href="#about">About</a>
+        <a href="#offer">What we offer</a>
+        <a href="#how">How it works</a>
+        <a href="kit.html">Artist kit</a>
+        <a href="#apply">Apply</a>
+      </nav>
+    </div>
+    <div class="footer-meta">
+      <p>theartiverse.github.io</p>
+      <p>@the_artiverse</p>
+      <p>© 2026 The Artiverse</p>
+    </div>
+  </footer>
+
+</div>
+</div>
+
+<script>
+  const saved = localStorage.getItem('ta-theme');
+  if (saved === 'light' || (!saved && matchMedia('(prefers-color-scheme: light)').matches))
+    document.body.classList.add('light');
+
+  document.querySelector('.theme-btn').addEventListener('click', () => {
+    localStorage.setItem('ta-theme', document.body.classList.contains('light') ? 'dark' : 'light');
+  });
+
+  const obs = new IntersectionObserver(entries =>
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); }),
+    { threshold: 0.07 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
