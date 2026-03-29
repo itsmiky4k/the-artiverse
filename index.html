@@ -275,7 +275,7 @@
     </h1>
     <p class="hero-sub">A curated space for emerging artists. Visibility, storytelling, and a real community — at no cost. Ever.</p>
     <div>
-      <a href="#apply" class="hero-cta">APPLY NOW</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTOJiCz5ta9zhV23iYAO93yo4Y3KgjNx8PdJKL0iU5I-QkMQ/viewform" class="hero-cta" target="_blank" rel="noopener">APPLY NOW</a>
       <a href="#about" class="hero-cta-sec">LEARN MORE</a>
     </div>
     <div class="hero-meta">
@@ -394,7 +394,7 @@
       <p class="cta-title">READY TO<br><span style="color:var(--accent);">APPLY?</span></p>
       <p class="cta-sub">Fill in the form — it takes less than 10 minutes. We respond within 2 weeks. No cost, no surprises.</p>
       <div class="cta-btns">
-        <a href="https://instagram.com/the_artiverse" class="btn-primary">APPLY NOW</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTOJiCz5ta9zhV23iYAO93yo4Y3KgjNx8PdJKL0iU5I-QkMQ/viewform" class="btn-primary" target="_blank" rel="noopener">APPLY NOW</a>
         <a href="kit.html" class="btn-sec">READ THE ARTIST KIT</a>
       </div>
     </div>
@@ -415,7 +415,7 @@
     <div class="contact-grid">
       <div class="contact-card">
         <span class="contact-label">Email</span>
-        <a href="mailto:thenewartiverse@gmail.com" class="contact-val">thenewartiverse@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#5b2f333e353e2c3a292f322d3e29283e1b3c363a323775383436" class="contact-val"><span class="__cf_email__" data-cfemail="86f2eee3e8e3f1e7f4f2eff0e3f4f5e3c6e1ebe7efeaa8e5e9eb">[email&#160;protected]</span></a>
         <p class="contact-note">For applications, collaborations, and general inquiries.</p>
       </div>
       <div class="contact-card">
@@ -448,20 +448,26 @@
 </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const saved = localStorage.getItem('ta-theme');
   if (saved === 'light' || (!saved && matchMedia('(prefers-color-scheme: light)').matches))
     document.body.classList.add('light');
 
   document.querySelector('.theme-btn').addEventListener('click', () => {
-    localStorage.setItem('ta-theme', document.body.classList.contains('light') ? 'dark' : 'light');
+    document.body.classList.toggle('light');
+    localStorage.setItem('ta-theme', document.body.classList.contains('light') ? 'light' : 'dark');
   });
 
+  const revealEls = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver(entries =>
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); }),
-    { threshold: 0.07 }
+    { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
   );
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  revealEls.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) el.classList.add('on');
+    else obs.observe(el);
+  });
 </script>
 </body>
 </html>
