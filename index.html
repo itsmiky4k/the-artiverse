@@ -20,17 +20,17 @@
     --rule-d: rgba(255,255,255,0.07);
     --rule-l: rgba(0,0,0,0.08);
   }
-
+ 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-
+ 
   body {
     font-family: 'DM Mono', monospace;
     background: var(--bg);
     overflow-x: hidden;
   }
   body.light { background: var(--paper); }
-
+ 
   .doc {
     --fg:      #f0ede8;
     --fg-soft: rgba(240,237,232,0.62);
@@ -47,7 +47,7 @@
     --card:    var(--paper2);
     --rule:    var(--rule-l);
   }
-
+ 
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -101,10 +101,10 @@
     nav { padding: 0 24px; }
     .nav-links { display: none; }
   }
-
+ 
   .page { max-width: 860px; margin: 0 auto; padding: 0 48px 120px; }
   @media(max-width:640px){ .page{ padding: 0 24px 80px; } }
-
+ 
   /* HERO */
   .hero {
     min-height: 100vh; display: flex; flex-direction: column;
@@ -159,7 +159,7 @@
     font-size: 10px; letter-spacing: .15em; text-transform: uppercase;
     color: var(--fg-muted); border-top: 1px solid var(--rule); padding-top: 20px;
   }
-
+ 
   /* SECTIONS */
   .sec { padding: 80px 0; border-top: 1px solid var(--rule); }
   .sec-hd { display: grid; grid-template-columns: 96px 1fr; gap: 24px; margin-bottom: 44px; align-items: start; }
@@ -169,13 +169,13 @@
   .sec-label { font-size:9px; letter-spacing:.25em; text-transform:uppercase; color:var(--accent); margin-bottom:5px; display:block; }
   .sec-title { font-family:'Anton',sans-serif; font-size:clamp(30px,5vw,50px); line-height:1; letter-spacing:.02em; color:var(--fg); }
   .sec-title .hi { color:var(--accent); }
-
+ 
   p.b { font-size:13px; line-height:1.9; color:var(--fg-soft); margin-bottom:16px; max-width:580px; }
   p.b strong { color:var(--fg); font-weight:400; }
-
+ 
   .pull { border-left:2px solid var(--accent); padding:16px 24px; margin:28px 0; background:var(--card); }
   .pull p { font-size:15px; line-height:1.7; color:var(--fg); font-style:italic; font-weight:300; }
-
+ 
   /* OFFER GRID */
   .offer-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--rule); border:1px solid var(--rule); margin:32px 0; }
   @media(max-width:480px){ .offer-grid{ grid-template-columns:1fr; } }
@@ -184,7 +184,7 @@
   .offer-bar { height:2px; margin-bottom:14px; }
   .offer-name { font-family:'Anton',sans-serif; font-size:18px; letter-spacing:.03em; color:var(--fg); margin-bottom:8px; }
   .offer-desc { font-size:12px; line-height:1.8; color:var(--fg-soft); }
-
+ 
   /* HOW IT WORKS */
   .steps { display:flex; flex-direction:column; gap:1px; background:var(--rule); border:1px solid var(--rule); margin:32px 0; }
   .step { background:var(--card); padding:22px 28px; display:grid; grid-template-columns:52px 1fr; gap:20px; align-items:start; }
@@ -192,7 +192,7 @@
   .step-title { font-family:'Anton',sans-serif; font-size:17px; letter-spacing:.03em; color:var(--fg); margin-bottom:6px; }
   .step-body { font-size:12px; line-height:1.8; color:var(--fg-soft); }
   .step-body strong { color:var(--fg); font-weight:400; }
-
+ 
   /* APPLY */
   .cta-block {
     border:1.5px solid var(--accent); padding:40px; margin:40px 0;
@@ -216,7 +216,7 @@
   }
   .btn-sec:hover { border-color:var(--fg); }
   body.light .btn-primary { background: #0a6e5e; color: #fff; }
-
+ 
   /* CONTACT */
   .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--rule); border:1px solid var(--rule); margin:32px 0; }
   @media(max-width:480px){ .contact-grid{ grid-template-columns:1fr; } }
@@ -225,7 +225,7 @@
   .contact-val { font-size:13px; color:var(--fg); text-decoration:none; display:block; }
   .contact-val:hover { color:var(--accent); }
   .contact-note { font-size:11px; color:var(--fg-muted); margin-top:6px; line-height:1.6; }
-
+ 
   /* FOOTER */
   .footer { border-top:1px solid var(--rule); padding-top:40px; margin-top:40px; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; }
   .footer-logo { font-family:'Anton',sans-serif; font-size:36px; letter-spacing:.02em; line-height:1; }
@@ -241,13 +241,13 @@
   .footer-nav { display:flex; gap:24px; flex-wrap:wrap; }
   .footer-nav a { font-size:10px; letter-spacing:.15em; text-transform:uppercase; color:var(--fg-muted); text-decoration:none; transition:color .2s; }
   .footer-nav a:hover { color:var(--accent); }
-
+ 
   .reveal { opacity:0; transform:translateY(12px); transition:opacity .5s ease,transform .5s ease; }
   .reveal.on { opacity:1; transform:none; }
 </style>
 </head>
 <body>
-
+ 
 <nav>
   <a href="index.html" class="nav-logo">THE ARTIVERSE</a>
   <ul class="nav-links">
@@ -261,10 +261,10 @@
     <button class="theme-btn" onclick="document.body.classList.toggle('light')">◐</button>
   </div>
 </nav>
-
+ 
 <div class="doc">
 <div class="page">
-
+ 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-grid"></div>
@@ -284,7 +284,7 @@
       <span>For artists who are growing</span>
     </div>
   </section>
-
+ 
   <!-- ABOUT -->
   <section class="sec reveal" id="about">
     <div class="sec-hd">
@@ -294,18 +294,18 @@
         <h2 class="sec-title">The <span class="hi">Artiverse</span></h2>
       </div>
     </div>
-
+ 
     <p class="b">The Artiverse is a hub for emerging artists. Not a gallery that charges you to exhibit. Not a platform that aggregates thousands of profiles without distinction. <strong>A project founded by an artist, for artists</strong> — born out of two years of paid open calls, inaccessible exhibitions, and a system that too often puts wallets before talent.</p>
-
+ 
     <p class="b">Our premise is simple: <strong>if your work is interesting, you deserve to be seen. Full stop.</strong> Not after paying a submission fee. Not after proving you already have 10,000 followers. Now.</p>
-
+ 
     <div class="pull">
-      <p>"99% of open calls share one thing in common: you pay to be seen. We exist to change that."</p>
+      <p>"Most open calls share one thing in common: you pay to be seen. We exist to change that."</p>
     </div>
-
+ 
     <p class="b">We are a digital hub with a strong editorial identity — every artist we present is told with care, not just published. Over time we will also become physical, with exhibitions and events. But the direction is always the same: <strong>the artist at the centre.</strong></p>
   </section>
-
+ 
   <!-- WHAT WE OFFER -->
   <section class="sec reveal" id="offer">
     <div class="sec-hd">
@@ -315,9 +315,9 @@
         <h2 class="sec-title">What you get<br><span class="hi">with us</span></h2>
       </div>
     </div>
-
+ 
     <p class="b">We don't promise the moon. We promise what we can deliver — and we deliver it. Here's what goes into your profile on The Artiverse.</p>
-
+ 
     <div class="offer-grid">
       <div class="offer-card">
         <div class="offer-bar" style="background:var(--neon-mint);"></div>
@@ -340,10 +340,10 @@
         <p class="offer-desc">You join a network of selected artists — not a database, a community. Mutual support, cross-visibility, and a place where you're not alone.</p>
       </div>
     </div>
-
+ 
     <p class="b" style="margin-top:8px;">And: <strong>no exclusivity</strong>. You can keep submitting to other platforms, participating in other exhibitions, doing whatever you want. The Artiverse doesn't ask for loyalty — it offers space.</p>
   </section>
-
+ 
   <!-- HOW IT WORKS -->
   <section class="sec reveal" id="how">
     <div class="sec-hd">
@@ -353,9 +353,9 @@
         <h2 class="sec-title">How it<br><span class="hi">works</span></h2>
       </div>
     </div>
-
+ 
     <p class="b">No bureaucracy, no endless forms. The process is simple and transparent — you always know where you stand.</p>
-
+ 
     <div class="steps">
       <div class="step">
         <span class="step-n">1</span>
@@ -387,7 +387,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- APPLY -->
   <section class="sec reveal" id="apply">
     <div class="cta-block">
@@ -399,7 +399,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- CONTACT -->
   <section class="sec reveal" id="contact">
     <div class="sec-hd">
@@ -409,9 +409,9 @@
         <h2 class="sec-title">Get in<br><span class="hi">touch</span></h2>
       </div>
     </div>
-
+ 
     <p class="b">Have a question before applying? Want to collaborate? Just want to say hi? We're reachable.</p>
-
+ 
     <div class="contact-grid">
       <div class="contact-card">
         <span class="contact-label">Email</span>
@@ -425,11 +425,11 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- FOOTER -->
   <footer class="footer">
     <div>
-      <div class="footer-logo">THE <span>ARTIV<br>ERSE</span></div>
+      <div class="footer-logo">THE <span>ARTI</span><br>VERSE</div>
       <nav class="footer-nav" style="margin-top:16px;">
         <a href="#about">About</a>
         <a href="#offer">What we offer</a>
@@ -439,25 +439,25 @@
       </nav>
     </div>
     <div class="footer-meta">
-      <p>theartiverse.github.io</p>
+      <p>Free for artists. Always.</p>
       <p>@the_artiverse</p>
       <p>© 2026 The Artiverse</p>
     </div>
   </footer>
-
+ 
 </div>
 </div>
-
+ 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const saved = localStorage.getItem('ta-theme');
   if (saved === 'light' || (!saved && matchMedia('(prefers-color-scheme: light)').matches))
     document.body.classList.add('light');
-
+ 
   document.querySelector('.theme-btn').addEventListener('click', () => {
     document.body.classList.toggle('light');
     localStorage.setItem('ta-theme', document.body.classList.contains('light') ? 'light' : 'dark');
   });
-
+ 
   const revealEls = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver(entries =>
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); }),
